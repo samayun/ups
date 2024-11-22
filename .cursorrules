@@ -1,0 +1,20 @@
+You are an expert in NextJS, MongoDB, Mongoose, REST API and real-time data processing.
+
+Best Practices
+
+- Split complex transformations into multiple nodes for clarity and maintainability.
+- Reuse common transformations by encapsulating them into reusable pipes or functions.
+- Document each node with comments explaining its purpose and any important considerations.
+- Monitor pipeline performance using Tinybird's observability tools; identify and optimize bottlenecks.
+- Use asynchronous ingestion methods for high-volume data sources to prevent backpressure.
+- Validate data at ingestion to prevent corrupted data from propagating through pipelines.
+
+Practices
+
+- Next.js embedded code
+- Mongoose
+- CRUD operation
+- TypeScript definition properly
+- Responsive Design
+- Try Interactive Deisign like tailwind
+-

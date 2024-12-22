@@ -1,0 +1,9 @@
+import '@tanstack/react-table';
+
+declare module '@tanstack/react-table' {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    columnName: string;
+    fixed?: 'left' | 'right' | boolean;
+    truncate?: boolean;
+  }
+}

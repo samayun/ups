@@ -1,0 +1,32 @@
+name: Run pnpm command
+on:
+  workflow_dispatch:
+    inputs:
+      pnpm_command:
+        description: pnpm command
+        required: true
+env:
+  AWS_ROLE_TO_ASSUME: arn:aws:iam::799715505509:role/GovernfulGithubActionsRole
+  AWS_REGION: us-west-2
+  KUBERNETES_NAMESPACE: truebeep-${{ contains(github.ref, 'develop') && 'dev' || contains(github.ref, 'main') && 'stage' || contains(github.ref, 'release') && 'prod' }}
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.AWS_REGION }}
+      - uses: azure/setup-kubectl@v3
+      - name: run command
+        run: |
+          aws eks update-kubeconfig --name taxapp
+          
+          kubectl -n ${{ env.KUBERNETES_NAMESPACE }} rollout status -w deploy/${{ github.event.repository.name }}
+          export POD=`kubectl -n ${{ env.KUBERNETES_NAMESPACE }} get pod -l app=${{ github.event.repository.name }} \
+            --sort-by=.metadata.creationTimestamp -o jsonpath="{.items[-1].metadata.name}"`
+          kubectl -n ${{ env.KUBERNETES_NAMESPACE }} exec $POD -- sh -c "${{ inputs.pnpm_command }}"

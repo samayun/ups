@@ -1,0 +1,75 @@
+name: Bug Report
+description: Create an Issue
+title: "<Bug title>"
+labels: ["bug", "improvement"]
+
+body:
+
+- type: input
+  attributes:
+    label: "URL"
+    description: Provide the file url
+  validations:
+    required: false
+
+    
+- type: textarea
+  attributes:
+    label: "Describe the bug"
+    description: Bug Description
+    placeholder: Describe the bug in detail. Provide Recording or Screenshots
+  validations:
+    required: false
+
+- type: textarea
+  attributes:
+    label: "Steps to reproduce"
+    description: "How do you trigger this bug? Please walk us through it step by step."
+    placeholder: |
+      1.Go to dashboard
+      2.Click on x button
+      3.Give input
+    render: bash
+  validations:
+    required: false
+
+
+- type: textarea
+  attributes:
+    label: "What is the expected behaviour"
+    description: Mention your expected feature
+    placeholder: Describe the bug in detail, what you expected to happen.
+    render: bash
+    
+  validations:
+    required: false
+
+- type: dropdown
+  attributes:
+    label: "Select the testing server"
+    description: On which server the bug was found?
+    multiple: true
+    options:
+      - Staging
+      - Production
+      - Development
+    default: 0
+  validations:
+    required: true
+
+
+- type: dropdown
+  attributes:
+    label: "Select your browser"
+    description: What browsers are you seeing the problem on?
+    multiple: true
+    options:
+      - MS Edge
+      - Chrome
+      - FireFox
+      - Safari
+      - Arc
+      - Brave
+    default: 0
+  validations:
+    required: true

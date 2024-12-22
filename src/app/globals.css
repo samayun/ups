@@ -1,0 +1,1334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* load local fonts */
+/* @import '/public/fonts/geist-font.css'; */
+
+@layer base {
+  /* --------------------------------- */
+  /* light theme */
+  /* --------------------------------- */
+  :root {
+    --background: 255 255 255; /* #ffffff */
+    --foreground: 27 30 39; /* #1b1e27 */
+    --muted: 212 217 227; /* #d4d9e3 */
+    --muted-foreground: 130 136 155; /* #b1b9c9 */
+
+    /*
+    * primary colors
+    */
+    --primary-lighter: 234 237 241; /* #eaedf1 */
+    --primary-default: 27 30 39; /* #1b1e27 */
+    --primary-dark: 0 0 0; /* #000000 */
+    --primary-foreground: 255 255 255; /* #ffffff */
+
+    /*
+    * secondary colors
+    */
+    --secondary-lighter: 221 227 255; /* #dde3ff */
+    --secondary-default: 78 54 245; /* #4e36f5 */
+    --secondary-dark: 67 42 216; /* #432ad8 */
+    --secondary-foreground: 255 255 255; /* #ffffff */
+
+    /*
+    * danger colors
+    */
+    --red-lighter: 247 212 214; /* #f7d4d6 */
+    --red-default: 238 0 0; /* #e00 */
+    --red-dark: 197 0 0; /* #c50000 */
+
+    /*
+    * warning colors
+    */
+    --orange-lighter: 255 239 207; /* #ffefcf */
+    --orange-default: 245 166 35; /* #f5a623 */
+    --orange-dark: 171 87 10; /* #ab570a */
+
+    /*
+    * info colors
+    */
+    --blue-lighter: 211 229 255; /* #d3e5ff */
+    --blue-default: 0 112 243; /* #0070f3 */
+    --blue-dark: 7 97 209; /* #0761d1 */
+
+    /*
+    * success colors
+    */
+    --green-lighter: 185 249 207; /* #b9f9cf */
+    --green-default: 17 168 73; /* #11a849 */
+    --green-dark: 17 132 60; /* #11843c */
+
+    /*
+    * glowing card
+    */
+    --tb-gc-border: hsl(280 10% 50% / 1);
+    --tb-gc-border-top-width: 2px;
+    --tb-gc-border-right-width: 2px;
+    --tb-gc-border-bottom-width: 2px;
+    --tb-gc-border-left-width: 2px;
+    --tb-gc-gradient: conic-gradient(
+      from 180deg at 50% 70%,
+      hsla(0, 0%, 98%, 1) 0deg,
+      #eec32d 72.0000010728836deg,
+      #0becb8 144.0000021457672deg,
+      #f600b9 216.00000858306885deg,
+      #00b3e3 288.0000042915344deg,
+      hsla(0, 0%, 98%, 1) 1turn
+    );
+  }
+
+  /* --------------------------------- */
+  /* dark theme */
+  /* --------------------------------- */
+  [data-theme='dark'] {
+    --background: 21 23 30; /* #15171e */
+    --foreground: 234 237 241; /* #eaedf1 */
+    --muted: 59 64 79; /* #3b404f */
+    --muted-foreground: 93 98 116; /* #5d6274 */
+
+    /*
+    * primary colors
+    */
+    --primary-lighter: 27 30 39; /* #1b1e27 */
+    --primary-default: 234 237 241; /* #eaedf1 */
+    --primary-dark: 246 247 249; /* #f6f7f9 */
+    --primary-foreground: 21 23 30; /* #15171e */
+
+    /*
+    * secondary colors
+    */
+    --secondary-lighter: 31 22 90; /* #1f165a */
+    --secondary-dark: 193 203 255; /* #c1cbff */
+
+    /*
+    * danger colors
+    */
+    --red-lighter: 204 29 43; /* #500000 */
+    --red-dark: 252 242 243; /* #fcf2f3 */
+
+    /*
+    * warning colors
+    */
+    --orange-lighter: 68 29 4; /* #441d04 */
+    --orange-dark: 252 234 139; /* #fcea8b */
+
+    /*
+    * info colors
+    */
+    --blue-lighter: 13 51 94; /* #0d335e */
+    --blue-dark: 181 233 255; /* #b5e9ff */
+
+    /*
+    * success colors
+    */
+    --green-lighter: 3 48 22; /* #033016 */
+    --green-dark: 185 249 207; /* #b9f9cf */
+  }
+
+  /* base style */
+  * {
+    @apply antialiased;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  }
+  html {
+    @apply !font-geist antialiased h-full;
+  }
+  body {
+    @apply min-h-full;
+  }
+  input::-ms-clear,
+  input::-ms-reveal {
+    @apply hidden;
+  }
+  input[type='search']::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    @apply m-0 appearance-none;
+  }
+  input[type='checkbox']:checked {
+    @apply bg-none;
+  }
+  input:-webkit-autofill {
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+  /* typography style for the Text component */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-2xl;
+  }
+  h4 {
+    @apply text-xl;
+  }
+  h5 {
+    @apply text-lg;
+  }
+  h6 {
+    @apply text-base;
+  }
+  q {
+    @apply text-lg;
+  }
+}
+
+@layer components {
+  .select2-dropdown {
+    @apply rounded-b-lg shadow-md;
+  }
+  .select2-search {
+    @apply border rounded border-steel-300;
+  }
+  .select2-results__group {
+    @apply text-lg font-bold text-steel-900;
+  }
+  /* ... */
+}
+
+@layer utilities {
+  .text-shadow-black {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  }
+
+  .truncate-two-line {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+  }
+
+  /* animation delay required for the Loader component */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+  /* this utilitie class required for the PinCode component */
+  .password-dot {
+    -webkit-text-security: disc;
+    -moz-text-security: circle;
+    text-security: circle;
+  }
+
+  .cursor-width-resize {
+    cursor:
+      url('/cursor-resize.png') 12 12,
+      auto;
+  }
+  .cursor-scale {
+    cursor:
+      url('/cursor-scale.png') 12 12,
+      auto;
+  }
+  .cursor-rotate {
+    cursor:
+      url('/cursor-rotate.png') 12 12,
+      auto;
+  }
+
+  .overflow-initial {
+    overflow: initial;
+  }
+
+  /* Custom Scrollbar Design */
+  .scrollbar-y::-webkit-scrollbar {
+    @apply w-2.5;
+  }
+  .scrollbar-x::-webkit-scrollbar {
+    @apply h-2.5;
+  }
+
+  .scrollbar-y::-webkit-scrollbar-track,
+  .scrollbar-x::-webkit-scrollbar-track {
+    @apply bg-white border border-solid rounded-sm border-steel-300;
+  }
+
+  .scrollbar-y::-webkit-scrollbar-thumb,
+  .scrollbar-x::-webkit-scrollbar-thumb {
+    @apply rounded-sm bg-steel-300 hover:bg-steel-400;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .thin-scrollbar-y::-webkit-scrollbar {
+    @apply w-3;
+  }
+  .thin-scrollbar-x::-webkit-scrollbar {
+    @apply h-3;
+  }
+
+  .thin-scrollbar-y::-webkit-scrollbar-track,
+  .scrollbar-x::-webkit-scrollbar-track {
+    @apply bg-white;
+  }
+
+  .thin-scrollbar-y::-webkit-scrollbar-thumb,
+  .thin-scrollbar-x::-webkit-scrollbar-thumb {
+    @apply border-[3px] border-solid rounded-full bg-steel-200 hover:bg-steel-300 border-white;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Chat Bubble Arrow */
+
+  .bubble-arrow {
+    @apply relative;
+  }
+
+  .bubble-arrow::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: -7px;
+    height: 20px;
+    width: 20px;
+    background: #e9e9eb;
+    border-bottom-right-radius: 15px;
+  }
+
+  .bubble-arrow::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: -10px;
+    width: 10px;
+    height: 20px;
+    background: white;
+    border-bottom-right-radius: 10px;
+  }
+
+  .widget-ring-2 {
+    box-shadow:
+      inset 2px 2px #48afeb,
+      inset -2px -2px #48afeb;
+  }
+  .widget-ring-accent {
+    box-shadow:
+      inset 3px 3px #48afeb,
+      inset -3px -3px #48afeb;
+  }
+  .card-gradient {
+    background-image: linear-gradient(120deg, #fff 45%, #f5f5f5);
+  }
+}
+
+/* React simplebar style */
+.simplebar-scrollbar:before {
+  @apply !bg-steel-400 dark:!bg-steel-600;
+}
+
+.simplebar-track.simplebar-horizontal {
+  @apply !h-2.5;
+}
+
+.simplebar-track.simplebar-vertical {
+  @apply !w-2.5;
+}
+
+/* Checkbox component */
+.checkbox-input + span {
+  @apply h-[18px] w-[18px] shrink-0 cursor-pointer rounded border-2 border-steel-200 dark:border-steel-600;
+}
+.checkbox-input.round + span {
+  @apply h-[22px] w-[22px] rounded-full border-2 border-steel-200 dark:border-steel-600;
+}
+
+.checkbox-input:disabled + span {
+  @apply cursor-not-allowed pointer-events-none border-steel-100 bg-steel-100 ring-steel-200 dark:border-steel-600/30 dark:bg-steel-600/30 dark:ring-steel-600/30;
+}
+
+.checkbox-input:focus + span {
+  @apply border-steel-700 dark:border-steel-600/90;
+}
+.checkbox-input:checked:focus + span {
+  @apply ring-1 ring-steel-700 ring-offset-2 dark:ring-steel-600/90;
+}
+.checkbox-input:checked:disabled + span {
+  @apply cursor-not-allowed pointer-events-none border-steel-200 bg-steel-100 ring-steel-200;
+}
+.checkbox-input:checked + span,
+.checkbox-input + span.indeterminate {
+  @apply border-steel-700 bg-steel-700 ring-steel-700 dark:border-steel-600 dark:bg-steel-600/90 dark:ring-steel-600;
+}
+.checkbox-input:checked + span::before {
+  @apply absolute inset-auto ml-0.5 mt-[3px] flex h-[5px] w-2.5 border-2 border-r-0 border-t-0 border-steel-100 content-[''] dark:border-steel-100/60;
+  transform: rotate(-45deg);
+}
+
+.checkbox-input.round:checked + span::before {
+  @apply absolute inset-auto ml-[3px] mt-[5px] flex h-1.5 w-3 border-2 border-r-0 border-t-0 border-steel-100 content-[''] dark:border-steel-100/60;
+  transform: rotate(-45deg);
+}
+
+.checkbox-input + span.indeterminate::before {
+  @apply absolute inset-auto ml-0.5 mt-1.5 flex h-0.5 w-2.5 bg-steel-100 content-[''] dark:bg-steel-100/90;
+}
+
+/* Transparent Scrollbar */
+.scrollbar-transparent::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+.scrollbar-transparent::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-steel-200 dark:bg-steel-600;
+}
+
+.scrollbar-transparent::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+/* ................................................... */
+/* React Datepicker Styling */
+/* ................................................... */
+.react-datepicker-wrapper {
+  @apply w-full;
+}
+.react-datepicker-popper {
+  @apply !z-[2];
+}
+.react-datepicker-popper .react-datepicker {
+  @apply bg-white text-steel-600 dark:border-muted dark:bg-steel-700;
+}
+
+/* month container */
+.react-datepicker .react-datepicker__month-container {
+  @apply px-3;
+}
+
+/* time container */
+.react-datepicker .react-datepicker__time-container {
+  @apply w-auto border-l-0 pr-3.5;
+}
+
+.react-datepicker-popper
+  .react-datepicker__time-container
+  .react-datepicker__time {
+  @apply bg-steel-50 dark:bg-steel-200;
+}
+
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item:hover {
+  @apply dark:bg-muted;
+}
+
+.react-datepicker
+  .react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box {
+  @apply w-24;
+}
+
+/* header */
+.react-datepicker .react-datepicker__header {
+  @apply bg-white border-b-transparent dark:border-transparent dark:bg-steel-700;
+}
+
+/* current month name in header */
+.react-datepicker .react-datepicker-year-header {
+  @apply dark:text-steel-300;
+}
+
+.react-datepicker .react-datepicker__current-month {
+  @apply mb-3 text-base font-medium dark:text-steel-300;
+}
+
+/* sun-sat day names in header */
+.react-datepicker .react-datepicker__day-names div {
+  @apply m-1.5 text-sm text-steel-700 dark:text-steel-300;
+}
+
+/* previous month button */
+.react-datepicker .react-datepicker__navigation--previous {
+  @apply ml-6 rtl:mr-6;
+}
+
+/* next month button */
+.react-datepicker .react-datepicker__navigation--next {
+  @apply mr-6 rtl:ml-6;
+}
+
+/* icon in previous month button */
+.react-datepicker .react-datepicker__navigation-icon--previous {
+  @apply right-0.5;
+}
+
+/* icon in next month button */
+.react-datepicker .react-datepicker__navigation-icon--next {
+  @apply left-0.5;
+}
+
+/* each day */
+.react-datepicker .react-datepicker__day {
+  @apply m-1.5 text-sm leading-7 text-steel-700 dark:text-steel-300;
+  @apply hover:rounded-full hover:bg-steel-100 hover:text-steel-900;
+}
+
+/* outside month */
+.react-datepicker .react-datepicker__day--outside-month {
+  @apply invisible opacity-0;
+}
+
+/* keyboard selected */
+.react-datepicker .react-datepicker__day--keyboard-selected {
+  @apply bg-steel-50;
+}
+
+/* today */
+.react-datepicker .react-datepicker__day--today {
+  @apply rounded-full border border-muted bg-steel-50 leading-[26px] text-steel-900 dark:border-steel-400 dark:bg-steel-700 dark:text-steel-300;
+  @apply hover:border-steel-600 hover:bg-steel-50;
+}
+
+/* while selecting */
+.react-datepicker div.react-datepicker__day--in-selecting-range {
+  @apply rounded-full bg-steel-200 text-steel-900;
+}
+
+.react-datepicker div.react-datepicker__year-text--in-selecting-range {
+  @apply bg-steel-200 text-steel-900;
+}
+
+.react-datepicker
+  div.react-datepicker__year-text--in-selecting-range.react-datepicker__year-text--disabled {
+  @apply bg-transparent text-muted;
+}
+
+/* in range */
+.react-datepicker .react-datepicker__day--in-range {
+  @apply rounded-full bg-steel-200 text-steel-900;
+}
+
+.react-datepicker .react-datepicker__year-text--in-range {
+  @apply bg-steel-200 text-steel-900;
+}
+
+/* selected */
+.react-datepicker .react-datepicker__day--range-start,
+.react-datepicker .react-datepicker__day--range-end,
+.react-datepicker .react-datepicker__day--selected {
+  @apply font-normal leading-7 border-none rounded-full bg-steel-900 text-steel-50 dark:bg-steel-600 dark:text-steel-100;
+  @apply hover:bg-steel-900/80 hover:text-steel-50;
+}
+
+.react-datepicker .react-datepicker__year-text--range-end {
+  @apply font-normal border-none bg-steel-900 text-steel-50 hover:bg-steel-900/80 hover:text-steel-50;
+}
+
+/* time list */
+.react-datepicker .react-datepicker__time-list {
+  @apply !h-[247px];
+}
+
+/* time item */
+.react-datepicker .react-datepicker__time-list-item {
+  @apply my-2 text-sm rounded text-steel-500;
+  @apply hover:bg-steel-100 hover:text-steel-900;
+}
+
+/* selected time item */
+.react-datepicker .react-datepicker__time-list-item--selected {
+  @apply !bg-steel-100 !font-medium !text-steel-900;
+}
+
+/* time only box */
+.react-datepicker-popper .react-datepicker-time__header {
+  @apply text-steel-700;
+}
+.react-datepicker-popper
+  .react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box {
+  width: 90px;
+}
+.react-datepicker--time-only
+  .react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box {
+  @apply w-auto;
+}
+
+/* time only item */
+.react-datepicker--time-only .react-datepicker__time-list-item {
+  @apply rounded-none;
+}
+
+/* month picker text */
+.react-datepicker .react-datepicker__month-text {
+  @apply w-0 px-5 py-1.5;
+}
+
+/* keyboard selected month in month picker */
+.react-datepicker .react-datepicker__month-text--keyboard-selected {
+  @apply bg-steel-100 text-steel-900;
+}
+
+/* month in range */
+.react-datepicker .react-datepicker__month--in-range {
+  @apply bg-steel-200 text-steel-700;
+}
+
+/* hover on selected months in range */
+.react-datepicker
+  .react-datepicker__month-text.react-datepicker__month--in-range:hover {
+  @apply bg-steel-200 text-steel-900;
+}
+
+/* selected month in range */
+.react-datepicker .react-datepicker__month--range-start,
+.react-datepicker .react-datepicker__month--range-end,
+.react-datepicker .react-datepicker__month--selected {
+  @apply font-normal bg-steel-900 text-steel-50;
+}
+
+/* hover on selected range start and end month */
+.react-datepicker
+  .react-datepicker__month-text.react-datepicker__month--selected:hover,
+.react-datepicker
+  .react-datepicker__month-text.react-datepicker__month--range-start:hover,
+.react-datepicker
+  .react-datepicker__month-text.react-datepicker__month--range-end:hover {
+  @apply bg-steel-900/80 text-steel-50;
+}
+
+/* year wrapper in year picker */
+.react-datepicker .react-datepicker__year-wrapper {
+  @apply inline-block max-w-[220px];
+}
+
+/* year text in year picker */
+.react-datepicker .react-datepicker__year-text {
+  @apply w-auto px-5 py-1.5 text-steel-600 dark:hover:text-steel-100;
+}
+
+.react-datepicker .react-datepicker__year-text--range-end {
+  @apply text-steel-50;
+}
+
+/* keyboard selected year in year picker */
+.react-datepicker .react-datepicker__year-text--keyboard-selected {
+  @apply bg-steel-200 text-steel-900;
+  @apply hover:bg-muted hover:text-steel-900;
+}
+
+/* selected year & month in year picker */
+.react-datepicker
+  .react-datepicker__year-text.react-datepicker__year-text--selected,
+.react-datepicker
+  .react-datepicker__month-text.react-datepicker__month-text--selected {
+  @apply bg-steel-900 text-steel-50;
+  @apply hover:bg-steel-900/80 hover:text-steel-50;
+}
+
+/* year and month dropdown arrow */
+.react-datepicker .react-datepicker__year-read-view--down-arrow,
+.react-datepicker .react-datepicker__month-read-view--down-arrow {
+  @apply top-[5px] h-[7px] w-[7px] border-r-[1.5px] border-t-[1.5px] border-muted dark:border-steel-400;
+}
+.react-datepicker .react-datepicker__month-read-view--selected-month {
+  @apply dark:text-steel-200;
+}
+
+/* sub-header containing year and month dropdown */
+.react-datepicker
+  .react-datepicker__current-month--hasYearDropdown.react-datepicker__current-month--hasMonthDropdown
+  ~ .react-datepicker__header__dropdown {
+  @apply grid grid-cols-2 my-2 text-sm divide-x divide-muted;
+}
+
+/* month and year dropdown button in sub-header */
+.react-datepicker .react-datepicker__month-dropdown-container--scroll,
+.react-datepicker .react-datepicker__year-dropdown-container--scroll {
+  @apply inline-flex justify-center;
+}
+
+/* month and year dropdown */
+.react-datepicker .react-datepicker__year-dropdown,
+.react-datepicker .react-datepicker__month-dropdown {
+  @apply top-auto w-2/5 border shadow-md border-steel-100 bg-steel-50 dark:border-steel-600 dark:bg-steel-700;
+}
+
+/* year dropdown */
+.react-datepicker .react-datepicker__year-dropdown {
+  @apply h-80;
+}
+
+/* month dropdown */
+.react-datepicker .react-datepicker__month-dropdown {
+  @apply py-3;
+}
+
+/* month and year option */
+.react-datepicker .react-datepicker__month-option,
+.react-datepicker .react-datepicker__year-option {
+  @apply py-1 my-1 text-sm text-steel-600 dark:text-steel-300;
+  @apply hover:bg-steel-100 hover:text-steel-900 dark:hover:bg-steel-600 dark:hover:text-steel-200;
+}
+
+/* first and last type of month and year option */
+.react-datepicker .react-datepicker__month-option:first-of-type,
+.react-datepicker .react-datepicker__month-option:last-of-type,
+.react-datepicker .react-datepicker__year-option:first-of-type,
+.react-datepicker .react-datepicker__year-option:last-of-type {
+  @apply rounded-none;
+}
+
+/* selected month and year in dropdown */
+.react-datepicker .react-datepicker__month-option--selected_month,
+.react-datepicker .react-datepicker__year-option--selected_year {
+  @apply bg-steel-200 text-steel-900 dark:bg-steel-600 dark:text-steel-200;
+  @apply [&>span]:hidden;
+}
+
+.react-datepicker .react-datepicker__day:hover,
+.react-datepicker .react-datepicker__month-text:hover,
+.react-datepicker .react-datepicker__quarter-text:hover,
+.react-datepicker .react-datepicker__year-text:hover {
+  @apply bg-steel-200 text-steel-900 dark:bg-steel-500 dark:text-steel-200;
+}
+
+/* disabled item */
+.react-datepicker .react-datepicker__day--disabled {
+  @apply cursor-not-allowed !text-muted hover:bg-transparent hover:text-muted dark:hover:text-muted;
+}
+
+.react-datepicker .react-datepicker__year-text--disabled {
+  @apply cursor-not-allowed text-muted hover:bg-transparent dark:hover:text-muted;
+}
+
+:is(
+    [data-theme='dark']
+      .react-datepicker-popper
+      .react-datepicker__time-container
+      .react-datepicker__time
+  ) {
+  @apply bg-steel-800;
+}
+
+:is([data-theme='dark'] .react-datepicker .react-datepicker__time-list-item) {
+  @apply text-steel-400;
+}
+
+:is(
+    [data-theme='dark']
+      .react-datepicker
+      .react-datepicker__time-list-item--selected
+  ) {
+  @apply !bg-steel-600 !text-steel-100;
+}
+
+.react-datepicker-popper .react-datepicker-time__header {
+  @apply dark:text-steel-300;
+}
+
+/* custom hightlighted textarea */
+.highlighted-textarea {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+  padding: 1em;
+}
+
+.blockbuilder-branding {
+  display: none !important;
+}
+
+/* --------------------------------- */
+/* Glowing Card */
+/* --------------------------------- */
+
+.truebeep-glowing-card {
+  --tb-gc-blur: 20;
+  --tb-gc-spread: 60;
+  --tb-gc-start: 0;
+}
+
+.truebeep-glowing-card:is(:hover, :focus-visible) {
+  z-index: 2;
+}
+
+.truebeep-glowing-card::before,
+.truebeep-glowing-card::after {
+  position: absolute;
+  inset: 0;
+  border-top: var(--tb-gc-border-top-width) solid transparent;
+  border-right: var(--tb-gc-border-right-width) solid transparent;
+  border-bottom: var(--tb-gc-border-bottom-width) solid transparent;
+  border-left: var(--tb-gc-border-left-width) solid transparent;
+  border-radius: inherit;
+  content: '';
+  pointer-events: none;
+}
+
+.truebeep-glowing-card::before {
+  background: var(--tb-gc-border);
+  background-attachment: fixed;
+  mask: linear-gradient(#0000, #0000),
+    conic-gradient(
+      from
+        calc(
+          (
+              (var(--tb-gc-start) + (var(--tb-gc-spread) * 0.25)) -
+                (var(--tb-gc-spread) * 1.5)
+            ) * 1deg
+        ),
+      hsl(0 0% 100% / 0.15) 0deg,
+      white,
+      hsl(0 0% 100% / 0.15) calc(var(--tb-gc-spread) * 2.5deg)
+    );
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+  opacity: var(--tb-gc-active);
+  transition: opacity 1s;
+}
+
+.truebeep-glowing-card::after {
+  background: var(--tb-gc-gradient);
+  background-attachment: fixed;
+  opacity: var(--tb-gc-active, 0);
+  transition: opacity 1s;
+  mask: linear-gradient(#0000, #0000),
+    conic-gradient(
+      from
+        calc(
+          (
+              (var(--tb-gc-start) + (var(--tb-gc-spread) * 0.25)) -
+                (var(--tb-gc-spread) * 0.5)
+            ) * 1deg
+        ),
+      #0000 0deg,
+      #fff,
+      #0000 calc(var(--tb-gc-spread) * 0.5deg)
+    );
+  filter: brightness(1.5);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+.truebeep-glowing-card-glows {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  filter: blur(calc(var(--tb-gc-blur) * 1px));
+}
+
+.truebeep-glowing-card-glows::after,
+.truebeep-glowing-card-glows::before {
+  --alpha: 0;
+  content: '';
+  background: var(--tb-gc-gradient);
+  background-attachment: fixed;
+  position: absolute;
+  inset: -5px;
+  border: 10px solid transparent;
+  border-radius: inherit;
+  mask: linear-gradient(#0000, #0000),
+    conic-gradient(
+      from calc((var(--tb-gc-start) - (var(--tb-gc-spread) * 0.5)) * 1deg),
+      #000 0deg,
+      #fff,
+      #0000 calc(var(--tb-gc-spread) * 1deg)
+    );
+  mask-composite: intersect;
+  mask-clip: padding-box, border-box;
+  opacity: var(--tb-gc-active);
+  transition: opacity 1s;
+}
+
+/* tiptap placeholder */
+.tiptap .is-editor-empty:first-child::before {
+  @apply text-steel-300;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.tiptap .is-empty:first-child::before {
+  @apply text-steel-300;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.tiptap h1.is-empty:first-child {
+  font-size: 32px;
+}
+
+/* AutoGrowingTextarea components placeholder */
+div[data-placeholder]::before {
+  content: attr(data-placeholder);
+  @apply pointer-events-none text-steel-300;
+}
+
+/* --------------------------------- */
+/* Glowing Card */
+/* --------------------------------- */
+.react-colorful {
+  @apply !w-52;
+}
+
+.react-colorful__saturation {
+  @apply !my-3 !rounded-md;
+}
+
+.react-colorful__hue {
+  order: -1;
+}
+
+.react-colorful__alpha,
+.react-colorful__hue {
+  @apply !h-4;
+}
+
+.react-colorful__pointer {
+  @apply !h-5 !w-5;
+}
+
+.react-colorful__last-control {
+  @apply !rounded-md;
+}
+
+/* ---------------------------------------------- */
+/* Table sticky columns shadow controlling */
+/* ---------------------------------------------- */
+.tablePinLeftCell.isActive {
+  @apply md:before:hidden after:w-5 after:block after:absolute after:top-0 after:-bottom-px after:-end-5 after:shadow-[inset_10px_0_8px_-8px_rgba(0,0,0,0.15)] after:pointer-events-none;
+}
+.isAtLeftEnd .tablePinRightCell.isActive {
+  @apply after:hidden;
+}
+.tablePinRightCell.isActive {
+  @apply after:hidden md:before:w-5 md:before:block md:before:absolute md:before:top-0 md:before:-bottom-px md:before:-start-5 md:before:shadow-[inset_-10px_0_8px_-8px_rgba(0,0,0,0.15)] md:before:pointer-events-none;
+}
+.isAtRightEnd .tablePinRightCell.isActive {
+  @apply md:before:hidden;
+}
+
+/* --------------------------------- */
+/* Eamil editor */
+/* --------------------------------- */
+/* .email-editor-typography {
+  font-family: var(--bodyFont, 'sans-serif');
+} */
+.email-editor-typography {
+  font-family:
+    -apple-system,
+    blinkmacsystemfont,
+    segoe ui,
+    roboto,
+    helvetica,
+    arial,
+    sans-serif,
+    apple color emoji,
+    segoe ui emoji,
+    segoe ui symbol;
+}
+
+.email-editor-typography .ProseMirror {
+  word-break: break-word;
+}
+
+/* .email-editor-typography p,
+.email-editor-typography ul,
+.email-editor-typography ol {
+  font-size: var(--bodyFontSize, 16px) !important;
+  line-height: var(--bodyLineHeight, 165%) !important;
+  letter-spacing: var(--bodyLetterSpacing, 0px) !important;
+}
+
+.email-editor-typography h1,
+.email-editor-typography h2,
+.email-editor-typography h3,
+.email-editor-typography h4,
+.email-editor-typography h5,
+.email-editor-typography h6 {
+  font-family: var(--headingFont, 'sans-serif');
+}
+
+.email-editor-typography h1 {
+  font-size: var(--h1FontSize, 32px) !important;
+  line-height: var(--h1LineHeight, 125%) !important;
+  letter-spacing: var(--h1LetterSpacing, 0px) !important;
+}
+
+.email-editor-typography h2 {
+  font-size: var(--h2FontSize, 24px) !important;
+  line-height: var(--h2LineHeight, 150%) !important;
+  letter-spacing: var(--h2LetterSpacing, 0px) !important;
+}
+
+.email-editor-typography h3 {
+  font-size: var(--h3FontSize, 20px) !important;
+  line-height: var(--h3LineHeight, 150%) !important;
+  letter-spacing: var(--h3LetterSpacing, 0px) !important;
+}
+
+.email-editor-typography h4 {
+  font-size: var(--h4FontSize, 18px) !important;
+  line-height: var(--h4LineHeight, 150%) !important;
+  letter-spacing: var(--h4LetterSpacing, 0px) !important;
+} */
+
+/* .email-editor-typography h1 span,
+.email-editor-typography h2 span,
+.email-editor-typography h3 span,
+.email-editor-typography h4 span {
+  line-height: inherit;
+} */
+
+.truebeep-editor-widget-Button p {
+  font-size: var(--fontSize, 16px) !important;
+  line-height: 1.25 !important;
+  font-weight: 600 !important;
+}
+
+.truebeep-thin-scrollbar,
+.react-datepicker__time-list {
+  scrollbar-width: thin;
+}
+
+.truebeep-thin-scrollbar::-webkit-scrollbar,
+.react-datepicker__time-list::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.truebeep-thin-scrollbar::-webkit-scrollbar-track,
+.react-datepicker__time-list::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+.truebeep-thin-scrollbar::-webkit-scrollbar-thumb,
+.react-datepicker__time-list::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+}
+
+/* ------------------------------------------------- */
+/* local font-family support for email editor */
+/* ------------------------------------------------- */
+span[style*='font-family: Playfair'] {
+  font-family: var(--font-playfair-display) !important;
+}
+
+span[style*='font-family: Lexend'] {
+  font-family: var(--font-lexend) !important;
+}
+
+span[style*='font-family: Josefin'] {
+  font-family: var(--font-josefin-sans) !important;
+}
+
+span[style*='font-family: Lato'] {
+  font-family: var(--font-lato) !important;
+}
+
+span[style*='font-family: Roboto'] {
+  font-family: var(--font-roboto) !important;
+}
+
+span[style*='font-family: Open'] {
+  font-family: var(--font-open-sans) !important;
+}
+
+span[style*='font-family: Inter'] {
+  font-family: var(--font-inter) !important;
+}
+
+/* rizzui select options safari issue fix */
+.rizzui-select-options {
+  filter: none;
+}
+
+/* Overlay.css */
+.overlay::before,
+.overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%; /* Adjusts the overlay to cover half of the block's width */
+  background: linear-gradient(
+    to left,
+    transparent,
+    rgba(11, 16, 24, 0.65)
+  ); /* Semi-transparent black */
+}
+
+.overlay::before {
+  left: 0; /* Positions the overlay on the left side */
+}
+
+.overlay::after {
+  right: 30; /* Positions the overlay on the right side */
+}
+
+/* ************************************ */
+/* React Big Calendar */
+/* ************************************ */
+
+/* .rbc-calendar {
+  @apply border-steel-200;
+} */
+
+.rbc-calendar .rbc-month-view,
+.rbc-calendar .rbc-time-view {
+  @apply border-0 border-steel-50;
+}
+
+.rbc-calendar .rbc-header {
+  @apply bg-transparent py-1.5 font-normal border-b-steel-100;
+}
+
+.rbc-event,
+.rbc-background-event {
+  @apply z-[2];
+}
+
+.rbc-header + .rbc-header,
+.rbc-day-bg + .rbc-day-bg {
+  @apply !border-l-steel-100;
+}
+
+.rbc-month-row + .rbc-month-row {
+  @apply !border-t-steel-100;
+}
+
+.rbc-calendar .rbc-off-range-bg {
+  @apply bg-steel-50/70;
+}
+
+.rbc-calendar .rbc-date-cell {
+  @apply pb-1 mt-1;
+}
+
+.rbc-calendar .rbc-button-link {
+  @apply px-1 py-1 text-sm leading-none rounded text-steel-700;
+}
+
+.rbc-calendar .rbc-today {
+  @apply bg-transparent;
+}
+
+.rbc-calendar .rbc-now .rbc-button-link {
+  @apply text-white bg-steel-700 px-1.5 font-normal rounded-full font-medium;
+}
+
+.rbc-calendar .rbc-off-range .rbc-button-link {
+  @apply text-steel-400;
+}
+
+.rbc-calendar .rbc-event,
+.rbc-calendar .rbc-day-slot .rbc-background-event {
+  /* @apply px-2 py-1 bg-emerald-100 text-steel-700; */
+  @apply relative bg-transparent text-steel-700;
+}
+
+.rbc-calendar .rbc-row-segment .rbc-event-content {
+  @apply px-2.5 py-1.5 text-xs font-medium transition-all border bg-steel-50 rounded-md text-steel-700 border-steel-100 hover:bg-steel-100;
+}
+
+.rbc-calendar
+  .rbc-row-segment
+  .rcb-addons-dnd-dragged-event
+  .rbc-event-content {
+  @apply bg-steel-100;
+}
+
+.rbc-calendar .rbc-row-segment .rbc-button-link.rbc-show-more {
+  @apply text-steel-700 font-semibold text-xs text-center py-0 mt-0.5 px-2 transition-colors duration-200 hover:text-blue-600;
+}
+
+.rbc-overlay {
+  @apply overflow-hidden rounded-md !border-steel-200 !shadow-dropdown-lg;
+}
+
+.rbc-overlay .rbc-overlay-header {
+  @apply text-sm font-medium text-steel-700 py-1.5 border-steel-100;
+}
+
+.rbc-overlay .rbc-event {
+  @apply px-2.5 py-1.5 text-xs font-medium transition-all border-solid mt-1.5 border rounded-md text-steel-700 border-steel-100 bg-steel-50 hover:bg-steel-100;
+}
+
+.rbc-calendar .rbc-time-view .rbc-row {
+  @apply min-h-9;
+}
+
+.rbc-calendar .rbc-timeslot-group {
+  @apply min-h-28 !border-steel-100;
+}
+
+.rbc-calendar .rbc-time-content > * + * > * {
+  @apply !border-steel-100;
+}
+
+.rbc-calendar .rbc-day-slot .rbc-event,
+.rbc-calendar .rbc-day-slot .rbc-background-event {
+  @apply flex flex-col px-2 py-1 ml-[5px] transition-all outline-none border-steel-100 bg-steel-50 hover:bg-steel-100 min-h-12;
+  flex-flow: column;
+}
+
+.rbc-calendar .rbc-day-slot .rbc-event-label {
+  @apply mb-0.5 text-xs text-steel-500;
+}
+
+.rbc-calendar .rbc-day-slot .rbc-event-content {
+  @apply text-sm text-steel-700;
+}
+
+.rbc-time-view .rbc-today {
+  @apply font-semibold bg-steel-50/30;
+}
+
+.rbc-calendar .rbc-time-slot {
+  @apply px-1 py-2 text-sm text-steel-700;
+}
+
+.rbc-calendar .rbc-time-content {
+  @apply border-steel-100;
+}
+
+.rbc-calendar.rbc-addons-dnd .rbc-addons-dnd-resize-ew-anchor {
+  @apply top-2.5;
+}
+
+.rbc-calendar.rbc-addons-dnd
+  .rbc-addons-dnd-resize-ew-anchor
+  .rbc-addons-dnd-resize-ew-icon {
+  @apply mx-1 border-l-4 border-steel-400;
+}
+
+/* media manager css */
+#media-manager-checkbox {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: white !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 20px; /* Adjust this value to change the icon size */
+}
+
+#media-manager-checkbox:checked {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check "><path d="M20 6 9 17l-5-5"></path></svg>');
+}
+
+.backdrop-blur-xs {
+  --tw-backdrop-blur: blur(2px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+    var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+    var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+    var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+    var(--tw-backdrop-sepia);
+}
+
+/* Remove Safari Autofill Icon */
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+}
+
+#action-item-checkbox {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 12px;
+  /* Adjust this value to change the icon size */
+}
+
+#action-item-checkbox:checked {
+  z-index: 10;
+  background-color: black !important;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg>');
+}
+
+#inbox-item-checkbox {
+  width: 20px;
+  height: 20px;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 12px;
+  /* Adjust this value to change the icon size */
+}
+
+#inbox-item-checkbox:checked {
+  z-index: 10;
+  background-color: black !important;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg>');
+}
+
+#cost-check {
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 12px;
+  /* Adjust this value to change the icon size */
+}
+
+#cost-check:checked {
+  z-index: 10;
+  background-color: black !important;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg>');
+}
+
+/*Emoji picker style override */
+
+.epr-emoji-category-label {
+  @apply !text-sm !font-normal !text-steel-500;
+}
+
+/*Firefox input box fixes*/
+
+@layer utilities {
+  /* Hide number input spinners in Firefox */
+  @supports (-moz-appearance: none) {
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

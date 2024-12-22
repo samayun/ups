@@ -1,0 +1,41 @@
+name: Deploy to AWS
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - main
+      - release
+env:
+  AWS_ECR: 799715505509.dkr.ecr.us-west-2.amazonaws.com/${{ github.event.repository.name }}
+  AWS_ROLE_TO_ASSUME: arn:aws:iam::799715505509:role/GovernfulGithubActionsRole
+  AWS_REGION: us-west-2
+  KUBERNETES_NAMESPACE: truebeep-${{ contains(github.ref, 'develop') && 'dev' || contains(github.ref, 'main') && 'stage' || contains(github.ref, 'release') && 'prod' }}
+jobs:
+  deploy:
+    runs-on: codebuild-truebeep-${{ github.runid }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: aws-actions/amazon-ecr-login@v1
+      - uses: azure/setup-kubectl@v3
+      - name: fetch env
+        uses: Infisical/secrets-action@main
+        with:
+          client-id: ${{ secrets.MACHINEidENTITY_CLIENTid }}
+          client-secret: ${{ secrets.MACHINEidENTITY_CLIENT_SECRET }}
+          domain: https://secrets.governfultech.com
+          env-slug: ${{ contains(github.ref, 'develop') && 'dev' || contains(github.ref, 'main') && 'stage' || contains(github.ref, 'release') && 'prod' }}
+          project-slug: "truebeep-e-xd-f"
+          export-type: "file"
+      - name: build and push
+        run: |
+          docker build . \
+            -t $AWS_ECR:v${{ github.run_number }}.${{ github.run_attempt }} \
+            -t $AWS_ECR:${{ github.ref_name }}
+          docker push $AWS_ECR -a
+      - name: deploy
+        run: |
+          aws eks update-kubeconfig --name taxapp
+          kubectl set image -n ${{ env.KUBERNETES_NAMESPACE }} \
+            deploy/${{ github.event.repository.name }} \
+            app=$AWS_ECR:v${{ github.run_number }}.${{ github.run_attempt }}

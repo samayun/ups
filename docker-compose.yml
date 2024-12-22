@@ -1,0 +1,18 @@
+services:
+  postgres:
+    container_name: ups_postgres
+    image: postgres:alpine
+    restart: always
+    command: [ "postgres", "-c", "wal_level=logical" ]
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ups
+    ports:
+      - 5432:5432
+    volumes:
+      - ups_postgres_data:/var/lib/postgresql/data
+volumes:
+  ups_postgres_data:
+
+
